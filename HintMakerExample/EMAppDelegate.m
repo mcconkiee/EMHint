@@ -6,8 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "EMAppDelegate.h"
-
+#import "EMAppDelegate.h"  
 #import "EMViewController.h"
 
 @implementation EMAppDelegate
@@ -27,7 +26,15 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.viewController = [[[EMViewController alloc] initWithNibName:@"EMViewController" bundle:nil] autorelease];
-    self.window.rootViewController = self.viewController;
+    
+    UIViewController *test = [[UIViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:test];
+    [nav pushViewController:self.viewController animated:YES];
+    
+    _hintHelper = [[HintHelper alloc] initWithViewController:self.viewController];
+    
+    
+    self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     return YES;
 }

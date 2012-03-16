@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "HintHelper.h" 
 @class EMViewController;
 
 @interface EMAppDelegate : UIResponder <UIApplicationDelegate>
-
+{
+    HintHelper *_hintHelper;
+}
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) EMViewController *viewController;
