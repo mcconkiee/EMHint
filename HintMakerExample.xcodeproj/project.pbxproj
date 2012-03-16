@@ -88,18 +88,15 @@
 		A11F3B191513E81000EE2AAD /* HintMakerExample */ = {
 			isa = PBXGroup;
 			children = (
-				A11F3B301513E82C00EE2AAD /* EMHint.h */,
-				A11F3B311513E82C00EE2AAD /* EMHint.m */,
-				A11F3B321513E82C00EE2AAD /* EMHintsView.m */,
-				A11F3B331513E82C00EE2AAD /* EMHintsView.h */,
+				A11F3B3B151406AE00EE2AAD /* EMHint */,
+				A11F3B381513EAF900EE2AAD /* HintHelper.h */,
+				A11F3B391513EAF900EE2AAD /* HintHelper.m */,
 				A11F3B221513E81000EE2AAD /* EMAppDelegate.h */,
 				A11F3B231513E81000EE2AAD /* EMAppDelegate.m */,
 				A11F3B251513E81000EE2AAD /* EMViewController.h */,
 				A11F3B261513E81000EE2AAD /* EMViewController.m */,
 				A11F3B281513E81000EE2AAD /* EMViewController.xib */,
 				A11F3B1A1513E81000EE2AAD /* Supporting Files */,
-				A11F3B381513EAF900EE2AAD /* HintHelper.h */,
-				A11F3B391513EAF900EE2AAD /* HintHelper.m */,
 			);
 			path = HintMakerExample;
 			sourceTree = "<group>";
@@ -114,6 +111,17 @@
 				A11F3B211513E81000EE2AAD /* HintMakerExample-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A11F3B3B151406AE00EE2AAD /* EMHint */ = {
+			isa = PBXGroup;
+			children = (
+				A11F3B301513E82C00EE2AAD /* EMHint.h */,
+				A11F3B311513E82C00EE2AAD /* EMHint.m */,
+				A11F3B321513E82C00EE2AAD /* EMHintsView.m */,
+				A11F3B331513E82C00EE2AAD /* EMHintsView.h */,
+			);
+			name = EMHint;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

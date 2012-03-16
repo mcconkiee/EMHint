@@ -32,6 +32,8 @@
     [test release];
     [nav pushViewController:self.viewController animated:YES];
     
+    
+    //add a hint helper to control the chain of hints , messaging, etc
     _hintHelper = [[HintHelper alloc] initWithViewController:self.viewController];
     
     
