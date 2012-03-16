@@ -2,7 +2,7 @@
 
 ## Overview
 
-**EMHint** is an iOS class group that easily adds a spotlight-like effect to a view. The protocols of EMHintDelegate allow users to override many of the default actions.
+**EMHint** is an iOS class group that easily adds a spotlight-like effect to a view. The protocols of EMHintDelegate allow users to override many of the default actions. Great for quick "how to" or tutorials in your app.
 
 
 
