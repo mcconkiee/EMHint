@@ -63,7 +63,7 @@
     switch (_curType) {
         case EMHintDialogTypeInfo:
             rect = CGRectMake(_vc.view.frame.size.width/2 ,
-                              _vc.view.frame.size.height/2 + statusBarHt,
+                              _vc.view.frame.size.height/2 + (statusBarHt + 44),
                               ht,ht);
             break;
         case EMHintDialogTypeList:

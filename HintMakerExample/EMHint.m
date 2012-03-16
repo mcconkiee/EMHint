@@ -11,7 +11,8 @@
 @implementation EMHint
 @synthesize hintDelegate;
 
-
+#pragma mark ---------------------------------->> 
+#pragma mark -------------->>private
 -(void)_onTap:(UITapGestureRecognizer*)tap
 {
     BOOL flag = YES;
@@ -39,6 +40,15 @@
     
 }
 
+-(void)_addTap
+{
+    UITapGestureRecognizer *tap = tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_onTap:)];
+    [_modalView addGestureRecognizer:tap]; 
+    [tap release];
+}
+
+#pragma mark ---------------------------------->> 
+#pragma mark -------------->>PUBLIC
 -(void)clear
 {
     [_modalView removeFromSuperview];
@@ -48,13 +58,9 @@
 {
     return _modalView;
 }
--(void)_addTap
-{
-    UITapGestureRecognizer *tap = tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_onTap:)];
-    [_modalView addGestureRecognizer:tap]; 
-}
 -(void)presentModalMessage:(NSString*)message where:(UIView*)presentationPlace
 {
+    //incase we have many in a row
     if(_modalView!=nil)
         [_modalView removeFromSuperview];
     
@@ -73,7 +79,7 @@
     if (_modalView==nil)
         [NSException raise:@"No ModalView protocols" 
                     format:@"you must at least implement a view or point "];
-    
+    [_modalView setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
     [presentationPlace addSubview:_modalView];
     
     UIView *v = nil;
@@ -92,6 +98,12 @@
                                                                    floorf(sz.width),
                                                                    floorf(sz.height +10
                                                                           ))];
+        
+        [label setAutoresizingMask:(UIViewAutoresizingFlexibleTopMargin
+                                    | UIViewAutoresizingFlexibleRightMargin
+                                    | UIViewAutoresizingFlexibleLeftMargin
+                                    | UIViewAutoresizingFlexibleBottomMargin
+                                    )];
         [label setBackgroundColor:[UIColor clearColor]];
         [label setFont:ft];
         [label setText:message];
@@ -99,6 +111,7 @@
         [label setNumberOfLines:0];
         [label setLineBreakMode:UILineBreakModeWordWrap];
         [_modalView addSubview:label];
+        [label release];
     }
     
     if ([[self hintDelegate] respondsToSelector:@selector(hintStateHasDefaultTapGestureRecognizer:)]) {
@@ -112,5 +125,11 @@
     }
    
                                    
+}
+#pragma mark ---------------------------------->> 
+#pragma mark -------------->>cleanup
+- (void)dealloc {
+    [_modalView release];
+    [super dealloc];
 }
 @end

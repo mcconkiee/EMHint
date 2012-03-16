@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EMHint.h"
 
 
-
-@interface EMViewController : UIViewController
+@interface EMViewController : UIViewController<EMHintDelegate>
+{
+    EMHint *_hint;
+}
 
 @end

@@ -12,7 +12,7 @@
 typedef enum
 {
     EMHintShapeTypeRound,
-    EMHintShapeTypeRectangle
+    EMHintShapeTypeRectangle//TODO
 }EMHintShapeType;
 
 @protocol EMHintDelegate <NSObject>

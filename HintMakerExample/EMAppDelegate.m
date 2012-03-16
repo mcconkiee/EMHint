@@ -29,12 +29,14 @@
     
     UIViewController *test = [[UIViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:test];
+    [test release];
     [nav pushViewController:self.viewController animated:YES];
     
     _hintHelper = [[HintHelper alloc] initWithViewController:self.viewController];
     
     
     self.window.rootViewController = nav;
+    [nav release];
     [self.window makeKeyAndVisible];
     return YES;
 }

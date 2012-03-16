@@ -86,7 +86,7 @@
     CGPathAddLineToPoint(path, NULL, c.x, c.y);
     /*
      
-     //draw a circle like spotlight
+     //draw a rectangle like spotlight --- i'll get to this later
      CGPathMoveToPoint(path, NULL, c.x-radius, c.y-radius);
      CGPathAddLineToPoint(path, NULL, c.x, c.y-radius);
      CGPathAddArcToPoint(path, NULL, c.x+radius, c.y-radius, c.x+radius, c.y, radius);
@@ -103,11 +103,13 @@
      */
     
     
-    CGContextAddPath(context, path);    
+    CGContextAddPath(context, path);  
+    CGPathRelease(path);
     CGContextClip(context);
     
     //add gradient
     CGContextDrawRadialGradient(context, gradientRef, c, 0.0f, c, _radius*2, 0);
+    CGGradientRelease(gradientRef);
     CGContextRestoreGState(context);
     
     //convert drawing to image for masking
@@ -122,14 +124,16 @@
     
     //mask the background image
     CGImageRef masked = CGImageCreateWithMask(backgroundimage, mask);
-    
+    CGImageRelease(backgroundimage);
     //remove the spotlight gradient now that we have it as image
     CGContextClearRect(context, rect);
     
     //draw the transparent background with the mask
     CGContextDrawImage(context, rect, masked);
     
-    
+    CGImageRelease(maskImage);
+    CGImageRelease(mask);
+    CGImageRelease(masked);
 }
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

@@ -9,14 +9,28 @@
 #import "EMViewController.h"
 
 @implementation EMViewController
+#pragma mark ---------------------------------->> 
+#pragma mark -------------->>hint deleage
+-(CGRect)hintStateRectToHint:(id)hintState
+{
+    return CGRectMake(0, 0, 1, 1);//smallest possible rect to return
+}
 
+#pragma mark ---------------------------------->> 
+#pragma mark -------------->>private
+-(void)_onTap:(id)sender
+{
+    [_hint presentModalMessage:@"One last hint for ya." where:self.view];
+}
 #pragma mark - View lifecycle
+
 -(void)_ui
 {
     
     
     UIButton *bt2 = [UIButton buttonWithType:UIButtonTypeInfoDark];
     [bt2 setCenter:self.view.center];
+    [bt2 addTarget:self action:@selector(_onTap:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bt2];
     
     
@@ -26,10 +40,16 @@
 }
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewWillAppear:animated];
     [self _ui];
-    
+
+    _hint = [[EMHint alloc] init];
+    [_hint setHintDelegate:self];
    
+}
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
 }
 
 @end
