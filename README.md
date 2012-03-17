@@ -2,7 +2,9 @@
 
 ## Overview
 
-**EMHint** is an iOS class group that easily adds a spotlight-like effect to a view. The protocols of EMHintDelegate allow users to override many of the default actions. Great for quick "how to" or tutorials in your app.
+**EMHint** is an iOS class group that easily adds a spotlight-like effect to a view highlighting or hinting at something that may be important on the screen.The protocols of EMHintDelegate allow users to override many of the default actions and views. Tapping the black overlay fades it away.
+
+Great for quick "how to" or tutorials in your app.
 
 
 
@@ -20,6 +22,7 @@ See the example app (`HintMakerExample`)in this build for more.
 1. It's possible to "daisy chain" hints. See the `HintHelper.m` class for a quick overview of using enums and protocol methods
 2. Custom views can be added inplace of the default white text. Useful if you need to add a view or label not at center, or any custom graphics, etc
 3. return CGRectMake(0,0,1,1) for an all black bg without spotlight….CGRectZero will fail.
+4. Not ARC compliant….later.
 
 
 #### Todo's (limitations)
