@@ -13,12 +13,12 @@
 		A11F3B1E1513E81000EE2AAD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A11F3B1C1513E81000EE2AAD /* InfoPlist.strings */; };
 		A11F3B201513E81000EE2AAD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A11F3B1F1513E81000EE2AAD /* main.m */; };
 		A11F3B241513E81000EE2AAD /* EMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A11F3B231513E81000EE2AAD /* EMAppDelegate.m */; };
-		A11F3B271513E81000EE2AAD /* EMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A11F3B261513E81000EE2AAD /* EMViewController.m */; };
-		A11F3B2A1513E81000EE2AAD /* EMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A11F3B281513E81000EE2AAD /* EMViewController.xib */; };
 		A11F3B341513E82C00EE2AAD /* EMHint.m in Sources */ = {isa = PBXBuildFile; fileRef = A11F3B311513E82C00EE2AAD /* EMHint.m */; };
 		A11F3B351513E82C00EE2AAD /* EMHintsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A11F3B321513E82C00EE2AAD /* EMHintsView.m */; };
 		A11F3B371513E90300EE2AAD /* sample.png in Resources */ = {isa = PBXBuildFile; fileRef = A11F3B361513E90300EE2AAD /* sample.png */; };
-		A11F3B3A1513EAF900EE2AAD /* HintHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A11F3B391513EAF900EE2AAD /* HintHelper.m */; };
+		A1FC40A3151F909C00056FF7 /* EMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FC40A0151F909C00056FF7 /* EMViewController.m */; };
+		A1FC40A4151F909C00056FF7 /* HintHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FC40A2151F909C00056FF7 /* HintHelper.m */; };
+		A1FC40A6151F90C200056FF7 /* EMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1FC40A5151F90C200056FF7 /* EMViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,16 +32,16 @@
 		A11F3B211513E81000EE2AAD /* HintMakerExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HintMakerExample-Prefix.pch"; sourceTree = "<group>"; };
 		A11F3B221513E81000EE2AAD /* EMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMAppDelegate.h; sourceTree = "<group>"; };
 		A11F3B231513E81000EE2AAD /* EMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMAppDelegate.m; sourceTree = "<group>"; };
-		A11F3B251513E81000EE2AAD /* EMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMViewController.h; sourceTree = "<group>"; };
-		A11F3B261513E81000EE2AAD /* EMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMViewController.m; sourceTree = "<group>"; };
-		A11F3B291513E81000EE2AAD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/EMViewController.xib; sourceTree = "<group>"; };
 		A11F3B301513E82C00EE2AAD /* EMHint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMHint.h; sourceTree = "<group>"; };
 		A11F3B311513E82C00EE2AAD /* EMHint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHint.m; sourceTree = "<group>"; };
 		A11F3B321513E82C00EE2AAD /* EMHintsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHintsView.m; sourceTree = "<group>"; };
 		A11F3B331513E82C00EE2AAD /* EMHintsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMHintsView.h; sourceTree = "<group>"; };
 		A11F3B361513E90300EE2AAD /* sample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample.png; sourceTree = "<group>"; };
-		A11F3B381513EAF900EE2AAD /* HintHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HintHelper.h; sourceTree = "<group>"; };
-		A11F3B391513EAF900EE2AAD /* HintHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HintHelper.m; sourceTree = "<group>"; };
+		A1FC409F151F909C00056FF7 /* EMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMViewController.h; sourceTree = "<group>"; };
+		A1FC40A0151F909C00056FF7 /* EMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMViewController.m; sourceTree = "<group>"; };
+		A1FC40A1151F909C00056FF7 /* HintHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HintHelper.h; sourceTree = "<group>"; };
+		A1FC40A2151F909C00056FF7 /* HintHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HintHelper.m; sourceTree = "<group>"; };
+		A1FC40A5151F90C200056FF7 /* EMViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EMViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,14 +88,14 @@
 		A11F3B191513E81000EE2AAD /* HintMakerExample */ = {
 			isa = PBXGroup;
 			children = (
-				A11F3B3B151406AE00EE2AAD /* EMHint */,
-				A11F3B381513EAF900EE2AAD /* HintHelper.h */,
-				A11F3B391513EAF900EE2AAD /* HintHelper.m */,
 				A11F3B221513E81000EE2AAD /* EMAppDelegate.h */,
+				A1FC409F151F909C00056FF7 /* EMViewController.h */,
+				A1FC40A5151F90C200056FF7 /* EMViewController.xib */,
+				A1FC40A0151F909C00056FF7 /* EMViewController.m */,
+				A1FC40A1151F909C00056FF7 /* HintHelper.h */,
+				A1FC40A2151F909C00056FF7 /* HintHelper.m */,
 				A11F3B231513E81000EE2AAD /* EMAppDelegate.m */,
-				A11F3B251513E81000EE2AAD /* EMViewController.h */,
-				A11F3B261513E81000EE2AAD /* EMViewController.m */,
-				A11F3B281513E81000EE2AAD /* EMViewController.xib */,
+				A11F3B3B151406AE00EE2AAD /* EMHint */,
 				A11F3B1A1513E81000EE2AAD /* Supporting Files */,
 			);
 			path = HintMakerExample;
@@ -175,8 +175,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A11F3B1E1513E81000EE2AAD /* InfoPlist.strings in Resources */,
-				A11F3B2A1513E81000EE2AAD /* EMViewController.xib in Resources */,
 				A11F3B371513E90300EE2AAD /* sample.png in Resources */,
+				A1FC40A6151F90C200056FF7 /* EMViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,10 +189,10 @@
 			files = (
 				A11F3B201513E81000EE2AAD /* main.m in Sources */,
 				A11F3B241513E81000EE2AAD /* EMAppDelegate.m in Sources */,
-				A11F3B271513E81000EE2AAD /* EMViewController.m in Sources */,
 				A11F3B341513E82C00EE2AAD /* EMHint.m in Sources */,
 				A11F3B351513E82C00EE2AAD /* EMHintsView.m in Sources */,
-				A11F3B3A1513EAF900EE2AAD /* HintHelper.m in Sources */,
+				A1FC40A3151F909C00056FF7 /* EMViewController.m in Sources */,
+				A1FC40A4151F909C00056FF7 /* HintHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,14 +205,6 @@
 				A11F3B1D1513E81000EE2AAD /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		A11F3B281513E81000EE2AAD /* EMViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A11F3B291513E81000EE2AAD /* en */,
-			);
-			name = EMViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -302,6 +294,7 @@
 				A11F3B2F1513E81000EE2AAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

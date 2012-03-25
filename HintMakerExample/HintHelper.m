@@ -76,7 +76,7 @@
             rect = CGRectMake(0, 0, 1, 1);
             break;
         default:
-            
+            rect = CGRectMake(0, 0, 1, 1);
             break;
     }
     return rect;
@@ -91,10 +91,10 @@
         UIFont *ft = [UIFont fontWithName:@"Arial" size:150.0];
         CGSize sz = [icon sizeWithFont:ft constrainedToSize:CGSizeMake(250, 1000)];
         UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(floorf(_vc.view.center.x - sz.width/2),
-                                                                   _vc.view.center.y - sz.height/2,
-                                                                   floorf(sz.width),
-                                                                   floorf(sz.height +10
-                                                                          ))] autorelease];
+                                                                    _vc.view.center.y - sz.height/2,
+                                                                    floorf(sz.width),
+                                                                    floorf(sz.height +10
+                                                                           ))] autorelease];
         [label setBackgroundColor:[UIColor clearColor]];
         [label setTextAlignment:UITextAlignmentCenter];
         [label setFont:ft];   
@@ -120,7 +120,7 @@
     }
     return self;
 }
-    
+
 - (void)dealloc {
     
     [modalState release];

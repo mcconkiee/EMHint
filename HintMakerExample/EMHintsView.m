@@ -32,7 +32,7 @@
     if (self) {
         // Initialization code
         _position = CGPointMake(onView.frame.origin.x + (onView.frame.size.width/2)
-                                , onView.frame.origin.y  );
+                                , onView.frame.origin.y + (onView.frame.size.height/2)  );
         _radius = onView.frame.size.width;
         [self setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:BACKGROUND_ALPHA]];
     }
@@ -98,7 +98,7 @@
      
      //fill with gradient
      CGContextDrawRadialGradient(context, gradientRef, c, 0.0f, c, _radius*2, 0);
-    
+     
      
      */
     

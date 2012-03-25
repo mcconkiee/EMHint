@@ -13,6 +13,7 @@
 @interface EMViewController : UIViewController<EMHintDelegate>
 {
     EMHint *_hint;
+     id _info;
 }
 
 @end
