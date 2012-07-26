@@ -24,6 +24,7 @@ typedef enum
     EMHintDialogTypeButton,
     EMHintDialogTypeList,
     EMHintDialogTypeBack,
+    EMHintDialogTypeListAndBack,
     EMHintDialogTypeCount
 }EMHintDialogType;
 

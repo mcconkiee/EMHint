@@ -17,9 +17,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 @interface EMHintsView : UIView
 {
-    CGPoint _position;
-    CGFloat _radius;
+    // array positions of spotlights
+    NSMutableArray* _positionArray;
+    // array radius of spotlights
+    NSMutableArray* _radiusArray;
 }
-- (id)initWithFrame:(CGRect)frame forView:(UIView*)onView;
-- (id)initWithFrame:(CGRect)frame withRect:(CGRect)aRect;
+
+- (id)initWithFrame:(CGRect)frame;
+- (id)initWithFrame:(CGRect)frame forViews:(NSArray*)viewArray;
+- (id)initWithFrame:(CGRect)frame withRects:(NSArray*)rectArray;
 @end

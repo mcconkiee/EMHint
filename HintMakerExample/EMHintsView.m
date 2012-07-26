@@ -20,27 +20,57 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 @implementation EMHintsView
 
-- (id)initWithFrame:(CGRect)frame withRect:(CGRect)aRect
+- (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-        _position = CGPointMake(aRect.origin.x,
-                                aRect.origin.y);
-        _radius = aRect.size.width;
+        // initialize arrays
+        _positionArray = [[NSMutableArray alloc] init];
+        _radiusArray = [[NSMutableArray alloc] init];
+        
+        // set background color
         [self setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:BACKGROUND_ALPHA]];
     }
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame forView:(UIView*)onView
+- (id)initWithFrame:(CGRect)frame withRects:(NSArray *)rectArray
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        _positionArray = [[NSMutableArray alloc] init];
+        _radiusArray = [[NSMutableArray alloc] init];
+        // add spotlight position and radius
+        for (NSValue* theRectObj in rectArray)
+        {
+            CGRect theRect = [theRectObj CGRectValue];
+            CGPoint pos = CGPointMake(theRect.origin.x, theRect.origin.y);
+            CGFloat radius = theRect.size.width;
+            [_positionArray addObject:[NSValue valueWithCGPoint:pos]];
+            [_radiusArray addObject:[NSNumber numberWithFloat:radius]];
+        }
+        [self setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:BACKGROUND_ALPHA]];
+    }
+    return self;
+}
+
+- (id)initWithFrame:(CGRect)frame forViews:(NSArray *)viewArray
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        _position = CGPointMake(onView.frame.origin.x + (onView.frame.size.width/2)
-                                , onView.frame.origin.y + (onView.frame.size.height/2)  );
-        _radius = onView.frame.size.width;
+        _positionArray = [[NSMutableArray alloc] init];
+        _radiusArray = [[NSMutableArray alloc] init];
+        // add spotlight position and radius
+        for (UIView* theView in viewArray)
+        {
+            CGPoint pos = CGPointMake(theView.frame.origin.x + (theView.frame.size.width/2)
+                                    , theView.frame.origin.y + (theView.frame.size.height/2)  );
+            CGFloat radius = theView.frame.size.width;
+            [_positionArray addObject:[NSValue valueWithCGPoint:pos]];
+            [_radiusArray addObject:[NSNumber numberWithFloat:radius]];
+        }
+        
         [self setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:BACKGROUND_ALPHA]];
     }
     return self;
@@ -48,18 +78,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 -(void)_background:(CGRect)rect
 {
-    CGPoint c = _position;
-    
+    // context for drawing
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGImageRef backgroundimage = CGBitmapContextCreateImage(context);
     CGContextClearRect(context, rect);
     //CGContextDrawImage(context, rect, backgroundimage); 
     
-    // Draw the masking image 
+    // save state
     CGContextSaveGState(context);
     
-    //flip the context (right-sideup)
+    // flip the context (right-sideup)
     CGContextTranslateCTM(context, 0, rect.size.height);
     CGContextScaleCTM(context, 1.0, -1.0);     
     
@@ -76,47 +105,57 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     
     CGFloat colorLocations[2] = {0.25,0.5};
     
-    //create the gradient Ref
-    CGGradientRef gradientRef = CGGradientCreateWithColorComponents(colorspace, components, colorLocations, 2);
+    // draw spotlights
+    int spotlightCount = _positionArray.count;
+    for (int i=0; i<spotlightCount; ++i)
+    {
+        // center and radius of spotlight
+        CGPoint c = [[_positionArray objectAtIndex:i] CGPointValue];
+        CGFloat radius = [[_radiusArray objectAtIndex:i] floatValue];
+        
+        //draw the shape
+        CGMutablePathRef path = CGPathCreateMutable();
+        //
+        //draw a rect around view
+        CGPathAddRect(path, NULL, CGRectMake(c.x - radius, c.y -radius,100,100));
+        CGPathAddLineToPoint(path, NULL, c.x + radius, c.y - radius);
+        CGPathAddLineToPoint(path, NULL, c.x + radius, c.y + radius);
+        CGPathAddLineToPoint(path, NULL, c.x - radius, c.y + radius);
+        CGPathAddLineToPoint(path, NULL, c.x - radius, c.y);
+        CGPathAddLineToPoint(path, NULL, c.x, c.y);
+        /*
+         
+         //draw a rectangle like spotlight --- i'll get to this later
+         CGPathMoveToPoint(path, NULL, c.x-radius, c.y-radius);
+         CGPathAddLineToPoint(path, NULL, c.x, c.y-radius);
+         CGPathAddArcToPoint(path, NULL, c.x+radius, c.y-radius, c.x+radius, c.y, radius);
+         CGPathAddArcToPoint(path, NULL, c.x+radius, c.y +radius, c.x , c.y+radius, radius);
+         CGPathAddArcToPoint(path, NULL, c.x -radius, c.y + radius, c.x-radius, c.y, radius);
+         CGPathAddArcToPoint(path, NULL, c.x-radius, c.y - radius, c.x, c.y-radius, radius);
+         CGContextAddPath(context, path);    
+         CGContextClip(context);
+         
+         //fill with gradient
+         CGContextDrawRadialGradient(context, gradientRef, c, 0.0f, c, _radius*2, 0);
+         
+         
+         */
+        CGContextSaveGState(context);
+        
+        CGContextAddPath(context, path);  
+        CGPathRelease(path);
+        CGContextClip(context);
+        
+        //add gradient
+        //create the gradient Ref
+        CGGradientRef gradientRef = CGGradientCreateWithColorComponents(colorspace, components, colorLocations, 2);
+        CGContextDrawRadialGradient(context, gradientRef, c, 0.0f, c, radius*2, 0);
+        CGGradientRelease(gradientRef);
+        
+        CGContextRestoreGState(context);
+    }
+    
     CGColorSpaceRelease(colorspace);
-    
-    //draw the shape
-    CGFloat radius =_radius;
-    CGMutablePathRef path = CGPathCreateMutable();
-    //
-    //draw a rect around view
-    CGPathAddRect(path, NULL, CGRectMake(c.x - _radius, c.y -radius,100,100));
-    CGPathAddLineToPoint(path, NULL, c.x +_radius, c.y  - _radius);
-    CGPathAddLineToPoint(path, NULL, c.x +_radius, c.y + _radius);
-    CGPathAddLineToPoint(path, NULL, c.x - _radius, c.y + _radius);
-    CGPathAddLineToPoint(path, NULL, c.x - _radius, c.y);
-    CGPathAddLineToPoint(path, NULL, c.x, c.y);
-    /*
-     
-     //draw a rectangle like spotlight --- i'll get to this later
-     CGPathMoveToPoint(path, NULL, c.x-radius, c.y-radius);
-     CGPathAddLineToPoint(path, NULL, c.x, c.y-radius);
-     CGPathAddArcToPoint(path, NULL, c.x+radius, c.y-radius, c.x+radius, c.y, radius);
-     CGPathAddArcToPoint(path, NULL, c.x+radius, c.y +radius, c.x , c.y+radius, radius);
-     CGPathAddArcToPoint(path, NULL, c.x -radius, c.y + radius, c.x-radius, c.y, radius);
-     CGPathAddArcToPoint(path, NULL, c.x-radius, c.y - radius, c.x, c.y-radius, radius);
-     CGContextAddPath(context, path);    
-     CGContextClip(context);
-     
-     //fill with gradient
-     CGContextDrawRadialGradient(context, gradientRef, c, 0.0f, c, _radius*2, 0);
-     
-     
-     */
-    
-    
-    CGContextAddPath(context, path);  
-    CGPathRelease(path);
-    CGContextClip(context);
-    
-    //add gradient
-    CGContextDrawRadialGradient(context, gradientRef, c, 0.0f, c, _radius*2, 0);
-    CGGradientRelease(gradientRef);
     CGContextRestoreGState(context);
     
     //convert drawing to image for masking
