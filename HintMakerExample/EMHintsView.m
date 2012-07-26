@@ -54,14 +54,22 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame forView:(UIView*)onView
+- (id)initWithFrame:(CGRect)frame forViews:(NSArray *)viewArray
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         _positionArray = [[NSMutableArray alloc] init];
         _radiusArray = [[NSMutableArray alloc] init];
-        
+        // add spotlight position and radius
+        for (UIView* theView in viewArray)
+        {
+            CGPoint pos = CGPointMake(theView.frame.origin.x + (theView.frame.size.width/2)
+                                    , theView.frame.origin.y + (theView.frame.size.height/2)  );
+            CGFloat radius = theView.frame.size.width;
+            [_positionArray addObject:[NSValue valueWithCGPoint:pos]];
+            [_radiusArray addObject:[NSNumber numberWithFloat:radius]];
+        }
         
         [self setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:BACKGROUND_ALPHA]];
     }

@@ -69,12 +69,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 {
     //incase we have many in a row
     if(_modalView!=nil)
-        [_modalView removeFromSuperview];
+        [self clear];
     
-    if ([self.hintDelegate respondsToSelector:@selector(hintStateViewToHint:)]) {
-        UIView *v = [self.hintDelegate hintStateViewToHint:self];
-        if(v!=nil)
-            _modalView = [[EMHintsView alloc] initWithFrame:presentationPlace.frame forView:v];
+    if ([self.hintDelegate respondsToSelector:@selector(hintStateViewsToHint:)]) {
+        NSArray *viewArray = [self.hintDelegate hintStateViewsToHint:self];
+        if(viewArray!=nil)
+            _modalView = [[EMHintsView alloc] initWithFrame:presentationPlace.frame forViews:viewArray];
     }
     
     if ([self.hintDelegate respondsToSelector:@selector(hintStateRectsToHint:)]) {

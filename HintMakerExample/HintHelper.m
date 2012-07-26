@@ -30,6 +30,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         case EMHintDialogTypeList:
             [modalState presentModalMessage:@"This is a list button! \r\nProtocol: returned rect" where:_vc.navigationController.view];
             break;
+        case EMHintDialogTypeListAndBack:
+            [modalState presentModalMessage:@"Multiple spotlights: list and back button \r\nProtocol: returned rect" where:_vc.navigationController.view];
+            break;
         default:
             [modalState presentModalMessage:@"" where:_vc.navigationController.view];
             break;
@@ -66,23 +69,36 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 {
     CGFloat ht = 50.0;
     CGFloat statusBarHt = 20.0;
-    CGRect rect;
     NSArray* rectArray = nil;
     switch (_curType) {
         case EMHintDialogTypeInfo:
-            rect = CGRectMake(_vc.view.frame.size.width/2 ,
-                              _vc.view.frame.size.height/2 + (statusBarHt + 44),
-                              ht,ht);
-            rectArray = [[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:rect], nil];
+            {
+                CGRect rect = CGRectMake(_vc.view.frame.size.width/2 ,
+                                         _vc.view.frame.size.height/2 + (statusBarHt + 44),
+                                         ht,ht);
+                rectArray = [[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:rect], nil];
+            }
             break;
         case EMHintDialogTypeList:
-            rect = CGRectMake(290, ht/2 + statusBarHt,ht,ht);
-            rectArray = [[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:rect], nil];
+            {
+                CGRect rect = CGRectMake(290, ht/2 + statusBarHt,ht,ht);
+                rectArray = [[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:rect], nil];
+            }
             break;
         case EMHintDialogTypeBack:
-            rect= CGRectMake(25, ht/2 + statusBarHt,ht,ht);
-            rectArray = [[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:rect], nil];
+            {
+                CGRect rect= CGRectMake(25, ht/2 + statusBarHt,ht,ht);
+                rectArray = [[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:rect], nil];
+            }
             break;
+        case EMHintDialogTypeListAndBack:
+            {
+                CGRect backRect = CGRectMake(25, ht/2 + statusBarHt,ht,ht);
+                CGRect listRect = CGRectMake(290, ht/2 + statusBarHt,ht,ht);
+                rectArray = [[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:backRect], [NSValue valueWithCGRect:listRect], nil];
+            }
+            break;
+            
         case EMHintDialogTypeButton:
             break;
         default:

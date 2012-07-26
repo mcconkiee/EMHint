@@ -31,9 +31,9 @@ typedef enum
 
 
 /*
- // return a view where the spotlight should shine     
+ // return an array of UIView where spotlights should shine     
  */
--(UIView*)hintStateViewToHint:(id)hintState;
+-(NSArray*)hintStateViewsToHint:(id)hintState;
 
 /*
  // the default hint space is a label with white helvetica text dynamically centered,
