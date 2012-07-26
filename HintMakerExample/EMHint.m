@@ -69,23 +69,23 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 {
     //incase we have many in a row
     if(_modalView!=nil)
-        [_modalView removeFromSuperview];
+        [self clear];
     
-    if ([self.hintDelegate respondsToSelector:@selector(hintStateViewToHint:)]) {
-        UIView *v = [self.hintDelegate hintStateViewToHint:self];
-        if(v!=nil)
-            _modalView = [[EMHintsView alloc] initWithFrame:presentationPlace.frame forView:v];
+    if ([self.hintDelegate respondsToSelector:@selector(hintStateViewsToHint:)]) {
+        NSArray *viewArray = [self.hintDelegate hintStateViewsToHint:self];
+        if(viewArray!=nil)
+            _modalView = [[EMHintsView alloc] initWithFrame:presentationPlace.frame forViews:viewArray];
     }
     
-    if ([self.hintDelegate respondsToSelector:@selector(hintStateRectToHint:)]) {
-        CGRect rect = [self.hintDelegate hintStateRectToHint:self];
-        if (rect.size.width>0 && rect.size.height>0)
-            _modalView = [[EMHintsView alloc] initWithFrame:presentationPlace.frame withRect:rect];
+    if ([self.hintDelegate respondsToSelector:@selector(hintStateRectsToHint:)]) {
+        NSArray* rectArray = [self.hintDelegate hintStateRectsToHint:self];
+        if (rectArray != nil)
+            _modalView = [[EMHintsView alloc] initWithFrame:presentationPlace.frame withRects:rectArray];
     }
     
     if (_modalView==nil)
-        [NSException raise:@"No ModalView protocols" 
-                    format:@"you must at least implement a view or point "];
+        _modalView = [[EMHintsView alloc] initWithFrame:presentationPlace.frame];
+    
     [_modalView setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
     [presentationPlace addSubview:_modalView];
     

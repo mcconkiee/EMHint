@@ -19,9 +19,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #pragma mark ---------------------------------->> 
 #pragma mark -------------->>hint deleage
 
--(UIView*)hintStateViewToHint:(id)hintState
+-(NSArray*)hintStateViewsToHint:(id)hintState
 {
-    return _info;
+    return [[NSArray alloc] initWithObjects:_info, nil];
 }
 -(UIView*)hintStateViewForDialog:(id)hintState
 {
