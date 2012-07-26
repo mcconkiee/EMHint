@@ -62,31 +62,33 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 
--(CGRect)hintStateRectToHint:(id)hintState
+-(NSArray*)hintStateRectsToHint:(id)hintState
 {
     CGFloat ht = 50.0;
     CGFloat statusBarHt = 20.0;
     CGRect rect;
+    NSArray* rectArray = nil;
     switch (_curType) {
         case EMHintDialogTypeInfo:
             rect = CGRectMake(_vc.view.frame.size.width/2 ,
                               _vc.view.frame.size.height/2 + (statusBarHt + 44),
                               ht,ht);
+            rectArray = [[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:rect], nil];
             break;
         case EMHintDialogTypeList:
             rect = CGRectMake(290, ht/2 + statusBarHt,ht,ht);
+            rectArray = [[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:rect], nil];
             break;
         case EMHintDialogTypeBack:
             rect= CGRectMake(25, ht/2 + statusBarHt,ht,ht);
+            rectArray = [[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:rect], nil];
             break;
         case EMHintDialogTypeButton:
-            rect = CGRectMake(0, 0, 1, 1);
             break;
         default:
-            rect = CGRectMake(0, 0, 1, 1);
             break;
     }
-    return rect;
+    return rectArray;
 }
 
 

@@ -42,10 +42,10 @@ typedef enum
 -(UIView*)hintStateViewForDialog:(id)hintState;
 
 /*
- // return a rect for where the spotlight should shine.
- // convenient if a UIView is not an option
+ // return an array of rects (NSValue objs) for where spotlights should shine.
+ // convenient if UIView array is not an option
  */
--(CGRect)hintStateRectToHint:(id)hintState;
+-(NSArray*)hintStateRectsToHint:(id)hintState;
 
 /*
  // return NO, if you plan to daisy chain hints, or do someother action
