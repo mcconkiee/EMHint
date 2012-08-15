@@ -28,7 +28,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
             [modalState presentModalMessage:@"Here is a simpl black overlay without a spotlight. \r\nProtocol: returned  rect" where:_vc.navigationController.view];
             break;    
         case EMHintDialogTypeList:
-            [modalState presentModalMessage:@"This is a list button! \r\nProtocol: returned rect" where:_vc.navigationController.view];
+            [modalState presentModalMessage:@"This is a list button!\r\nTouch passthrough example (try the button). \r\nProtocol: returned rect" where:_vc.navigationController.view];
             break;
         case EMHintDialogTypeListAndBack:
             [modalState presentModalMessage:@"Multiple spotlights: list and back button \r\nProtocol: returned rect" where:_vc.navigationController.view];
