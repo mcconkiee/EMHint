@@ -76,26 +76,26 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 CGRect rect = CGRectMake(_vc.view.frame.size.width/2 ,
                                          _vc.view.frame.size.height/2 + (statusBarHt + 44),
                                          ht,ht);
-                rectArray = [[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:rect], nil];
+                rectArray = [[[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:rect], nil] autorelease];
             }
             break;
         case EMHintDialogTypeList:
             {
                 CGRect rect = CGRectMake(290, ht/2 + statusBarHt,ht,ht);
-                rectArray = [[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:rect], nil];
+                rectArray = [[[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:rect], nil] autorelease];
             }
             break;
         case EMHintDialogTypeBack:
             {
                 CGRect rect= CGRectMake(25, ht/2 + statusBarHt,ht,ht);
-                rectArray = [[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:rect], nil];
+                rectArray = [[[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:rect], nil] autorelease];
             }
             break;
         case EMHintDialogTypeListAndBack:
             {
                 CGRect backRect = CGRectMake(25, ht/2 + statusBarHt,ht,ht);
                 CGRect listRect = CGRectMake(290, ht/2 + statusBarHt,ht,ht);
-                rectArray = [[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:backRect], [NSValue valueWithCGRect:listRect], nil];
+                rectArray = [[[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:backRect], [NSValue valueWithCGRect:listRect], nil] autorelease];
             }
             break;
             
@@ -106,7 +106,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     }
     return rectArray;
 }
-
+-(BOOL)hintStateShouldAllowTouchPassedThrough:(id)hintState touch:(UITouch *)touch
+{
+    if (_curType == EMHintDialogTypeList ) {
+       return YES;
+    }
+    return NO;
+}
 
 -(UIView*)hintStateViewForDialog:(id)hintState
 {

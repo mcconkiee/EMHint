@@ -54,6 +54,13 @@ typedef enum
 -(BOOL) hintStateShouldCloseIfPermitted:(id)hintState ;
 
 /*
+ // return NO, if you would like the view below the lightbox to be interactive
+ // return YES, to bock the views below
+ */
+-(BOOL) hintStateShouldAllowTouchPassedThrough:(id)hintState touch:(UITouch*)touch;
+
+
+/*
  // called just before the close (fade) of a modal state view     
  */
 -(void) hintStateWillClose:(id)hintState ;
@@ -76,7 +83,7 @@ typedef enum
 
 @end
 
-@interface EMHint : NSObject
+@interface EMHint : NSObject<UIGestureRecognizerDelegate>
 {
     EMHintsView *_modalView;//our transparent hint window with lablel and spotlight
 }

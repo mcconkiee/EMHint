@@ -21,8 +21,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     NSMutableArray* _positionArray;
     // array radius of spotlights
     NSMutableArray* _radiusArray;
+
 }
 
+@property (nonatomic,assign)BOOL allowsPassingTouches;
 - (id)initWithFrame:(CGRect)frame;
 - (id)initWithFrame:(CGRect)frame forViews:(NSArray*)viewArray;
 - (id)initWithFrame:(CGRect)frame withRects:(NSArray*)rectArray;

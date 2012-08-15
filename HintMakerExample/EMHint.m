@@ -20,13 +20,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 #pragma mark ---------------------------------->> 
 #pragma mark -------------->>private
+
 -(void)_onTap:(UITapGestureRecognizer*)tap
 {
     BOOL flag = YES;
     if ([self.hintDelegate respondsToSelector:@selector(hintStateShouldCloseIfPermitted:)]) {
         flag = [self.hintDelegate hintStateShouldCloseIfPermitted:self];
     }
+    
     if(!flag)return;
+    
+    //closing
     if ([self.hintDelegate respondsToSelector:@selector(hintStateWillClose:)]) {
         [self.hintDelegate hintStateWillClose:self];
     }
@@ -47,9 +51,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     
 }
 
+
+
 -(void)_addTap
 {
     UITapGestureRecognizer *tap = tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_onTap:)];
+    [tap setDelegate:self];
     [_modalView addGestureRecognizer:tap]; 
     [tap release];
 }
@@ -85,6 +92,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     
     if (_modalView==nil)
         _modalView = [[EMHintsView alloc] initWithFrame:presentationPlace.frame];
+    
+    
+    if ([self.hintDelegate respondsToSelector:@selector(hintStateShouldAllowTouchPassedThrough:touch:)]) {
+        
+        BOOL flag =[self.hintDelegate hintStateShouldAllowTouchPassedThrough:self touch:nil];        
+        [_modalView setAllowsPassingTouches:flag];
+    }
+    
     
     [_modalView setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
     [presentationPlace addSubview:_modalView];
@@ -133,6 +148,20 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
    
                                    
 }
+
+#pragma mark ---------------------------------->> 
+#pragma mark -------------->>TAP Gesture Delegate
+- (BOOL)gestureRecognizerShouldBegin:(UITapGestureRecognizer *)gestureRecognizer {
+
+    
+    return YES;
+}
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    
+    return YES;
+}
+
+
 #pragma mark ---------------------------------->> 
 #pragma mark -------------->>cleanup
 - (void)dealloc {

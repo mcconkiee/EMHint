@@ -19,7 +19,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #define BACKGROUND_ALPHA 0.70
 
 @implementation EMHintsView
-
+@synthesize allowsPassingTouches = _allowsPassingTouches;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -105,8 +105,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     
     CGFloat colorLocations[2] = {0.25,0.5};
     
+
+    
     // draw spotlights
     int spotlightCount = _positionArray.count;
+    
+    
     for (int i=0; i<spotlightCount; ++i)
     {
         // center and radius of spotlight
@@ -123,26 +127,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         CGPathAddLineToPoint(path, NULL, c.x - radius, c.y + radius);
         CGPathAddLineToPoint(path, NULL, c.x - radius, c.y);
         CGPathAddLineToPoint(path, NULL, c.x, c.y);
-        /*
-         
-         //draw a rectangle like spotlight --- i'll get to this later
-         CGPathMoveToPoint(path, NULL, c.x-radius, c.y-radius);
-         CGPathAddLineToPoint(path, NULL, c.x, c.y-radius);
-         CGPathAddArcToPoint(path, NULL, c.x+radius, c.y-radius, c.x+radius, c.y, radius);
-         CGPathAddArcToPoint(path, NULL, c.x+radius, c.y +radius, c.x , c.y+radius, radius);
-         CGPathAddArcToPoint(path, NULL, c.x -radius, c.y + radius, c.x-radius, c.y, radius);
-         CGPathAddArcToPoint(path, NULL, c.x-radius, c.y - radius, c.x, c.y-radius, radius);
-         CGContextAddPath(context, path);    
-         CGContextClip(context);
-         
-         //fill with gradient
-         CGContextDrawRadialGradient(context, gradientRef, c, 0.0f, c, _radius*2, 0);
-         
-         
-         */
+       
         CGContextSaveGState(context);
         
         CGContextAddPath(context, path);  
+        
         CGPathRelease(path);
         CGContextClip(context);
         
@@ -154,6 +143,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         
         CGContextRestoreGState(context);
     }
+    
+    
     
     CGColorSpaceRelease(colorspace);
     CGContextRestoreGState(context);
@@ -171,6 +162,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     //mask the background image
     CGImageRef masked = CGImageCreateWithMask(backgroundimage, mask);
     CGImageRelease(backgroundimage);
+    
     //remove the spotlight gradient now that we have it as image
     CGContextClearRect(context, rect);
     
@@ -181,6 +173,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     CGImageRelease(mask);
     CGImageRelease(masked);
 }
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
@@ -189,5 +182,34 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     [self _background:rect];
 }
 
+/*
+ override this to determine if we will allow a pass through on the tap events....by request     
+ */
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    if(!_allowsPassingTouches)
+        return YES;
+    
+    
+    //if we allow touch-through, we have to see if the touch is actually on our spotlights
+    int count  = 0;    
+    for (NSValue *v in _positionArray) {
+        //recreate the spotlights and test if the point needs to pass through
+        CGPoint center = [[_positionArray objectAtIndex:count] CGPointValue];
+        CGFloat radius = [[_radiusArray objectAtIndex:count] floatValue];
+        CGFloat w = radius/2;
+        CGRect rct = CGRectMake(center.x - w, 
+                                center.y -w,
+                                radius*2, radius*2);
+        bool hasPoint = CGRectContainsPoint(rct, point);
+        
+        if(hasPoint)
+        {
+
+            return NO;
+        }
+        count++;
+    }
+    return YES;
+}
 
 @end

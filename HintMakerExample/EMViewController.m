@@ -21,16 +21,20 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 -(NSArray*)hintStateViewsToHint:(id)hintState
 {
-    return [[NSArray alloc] initWithObjects:_info, nil];
+    return [[[NSArray alloc] initWithObjects:_info, nil] autorelease];
 }
 -(UIView*)hintStateViewForDialog:(id)hintState
 {
-    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(50, 50, 200, 50)];
+    UILabel *l = [[[UILabel alloc] initWithFrame:CGRectMake(50, 50, 200, 50)] autorelease];
     
     [l setBackgroundColor:[UIColor clearColor]];
     [l setTextColor:[UIColor whiteColor]];
     [l setText:@"I am the info button!"];
     return l;
+}
+-(BOOL)hintStateShouldAllowTouchPassedThrough:(id)hintState touch:(UITouch *)touch
+{
+    return YES;
 }
 #pragma mark ---------------------------------->> 
 #pragma mark -------------->>private

@@ -89,12 +89,12 @@
 			isa = PBXGroup;
 			children = (
 				A11F3B221513E81000EE2AAD /* EMAppDelegate.h */,
+				A11F3B231513E81000EE2AAD /* EMAppDelegate.m */,
 				A1FC409F151F909C00056FF7 /* EMViewController.h */,
 				A1FC40A5151F90C200056FF7 /* EMViewController.xib */,
 				A1FC40A0151F909C00056FF7 /* EMViewController.m */,
 				A1FC40A1151F909C00056FF7 /* HintHelper.h */,
 				A1FC40A2151F909C00056FF7 /* HintHelper.m */,
-				A11F3B231513E81000EE2AAD /* EMAppDelegate.m */,
 				A11F3B3B151406AE00EE2AAD /* EMHint */,
 				A11F3B1A1513E81000EE2AAD /* Supporting Files */,
 			);
