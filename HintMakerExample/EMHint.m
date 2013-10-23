@@ -87,8 +87,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         _modalView = [[EMHintsView alloc] initWithFrame:presentationPlace.frame];
     
     [_modalView setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
-    [presentationPlace addSubview:_modalView];
-    
+    [presentationPlace.superview addSubview:_modalView];
+
+  
     UIView *v = nil;
     if ([[self hintDelegate] respondsToSelector:@selector(hintStateViewForDialog:)]) {
         v = [self.hintDelegate hintStateViewForDialog:self];
