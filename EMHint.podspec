@@ -11,5 +11,5 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '6.0'
   s.source       = { :git => "https://github.com/mcconkiee/EMHint.git",:tag => "1.0"}
   s.source_files = 'HintMakerExample'
-  s.requires_arc = true
+  s.requires_arc = false
 end
