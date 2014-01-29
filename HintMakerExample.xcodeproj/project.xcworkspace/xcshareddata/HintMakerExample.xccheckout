@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6ADEE4AD-326C-46E7-9234-68E460D7F134</string>
+	<key>IDESourceControlProjectName</key>
+	<string>HintMakerExample</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>550A8B12-79E0-446A-808D-8CDBD6C87783</key>
+		<string>https://github.com/mcconkiee/EMHint.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>HintMakerExample.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>550A8B12-79E0-446A-808D-8CDBD6C87783</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mcconkiee/EMHint.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>550A8B12-79E0-446A-808D-8CDBD6C87783</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>550A8B12-79E0-446A-808D-8CDBD6C87783</string>
+			<key>IDESourceControlWCCName</key>
+			<string>EMHint</string>
+		</dict>
+	</array>
+</dict>
+</plist>
